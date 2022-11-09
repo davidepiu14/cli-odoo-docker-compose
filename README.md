@@ -1,8 +1,7 @@
 # cli-odoo-docker-compose
 
-## Under development
 
-Set-up your locally enviroment to work with Odoo and docker, no more move and copy and past from other projects
+Set-up your locally enviroment to work with Odoo and docker, no more copy and past from other projects
 
 
 ## Roadmap
