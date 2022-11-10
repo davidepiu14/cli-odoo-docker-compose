@@ -23,6 +23,5 @@ class OdooDockerComposeBuilder:
     def create_docker_compose(self, version, port):
         payload = """
        %s %s""" % (version, port)
-
         write = self._db_handler.write_compose(version)
         return CurrentOdooDockerImage(payload, write.error)
