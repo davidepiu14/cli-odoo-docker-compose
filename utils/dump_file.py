@@ -5,7 +5,7 @@ class MyDumper(yaml.Dumper):
     def increase_indent(self, flow=False, indentless=False):
         return super(MyDumper, self).increase_indent(flow, False)
     
-data = {
+COMPOSE_BLUEPRINT = {
     "version": "3.1",
     
     "services":  {
@@ -33,7 +33,3 @@ data = {
 
 
 
-with open("docker-compose.yml", mode="wt", encoding="utf-8") as file:
-    yaml.dump(data,file, Dumper=MyDumper, default_flow_style=False)
-
-    
