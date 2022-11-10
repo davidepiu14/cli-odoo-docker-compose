@@ -2,19 +2,27 @@
 
 import datetime
 
+
+from database import DatabaseHandler
+
 from pathlib import Path
 from typing import Any, Dict, List, NamedTuple
 
 
 
+class CurrentOdooDockerImage(NamedTuple):
+    expense: Dict[str, Any]
+    error: int
 
-class OdooDockerVersion:
+
+class OdooDockerComposeBuilder:
 
     def __init__(self, db_path: Path) -> None:
         self._db_handler = DatabaseHandler(db_path)
 
-    def create_docker_compose(self, version):
-        payload = 
+    def create_docker_compose(self, version, port):
+        payload = """
+       %s %s""" % (version, port)
 
         write = self._db_handler.write_compose(version)
-        return CurrentDockerVersion(payload, write.error)
+        return CurrentOdooDockerImage(payload, write.error)
