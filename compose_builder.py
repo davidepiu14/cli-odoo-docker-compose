@@ -11,7 +11,7 @@ from typing import Any, Dict, List, NamedTuple
 
 
 class CurrentOdooDockerImage(NamedTuple):
-    expense: Dict[str, Any]
+    image: Dict[str, Any]
     error: int
 
 
