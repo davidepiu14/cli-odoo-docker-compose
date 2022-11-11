@@ -17,12 +17,15 @@ class CurrentOdooDockerImage(NamedTuple):
     error: int
 
 
-class OdooDockerComposeBuilder(yaml.Dumper):
+class OdooDockerComposeBuilder:
 
     def __init__(self, db_path: Path) -> None:
         self._db_handler = DatabaseHandler(db_path)
    
     def create_docker_compose(self, version):
-        payload = COMPOSE % (version)
-        write = self._db_handler.write_compose(payload)
-        return CurrentOdooDockerImage(payload, write.error)
+        
+        COMPOSE['services']['web'].update({
+            'image': f'odoo:{version}'
+        }) 
+        write = self._db_handler.write_compose(COMPOSE)
+        return CurrentOdooDockerImage(COMPOSE, write.error)

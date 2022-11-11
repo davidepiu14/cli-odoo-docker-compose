@@ -23,7 +23,6 @@ COMPOSE = {
     "services":  {
         "web": 
             {
-            "image": "odoo:%s.0",
             "depends_on": ["db"],
             "ports": ["8069:8069", "8072:8072"],
             "volumes": [

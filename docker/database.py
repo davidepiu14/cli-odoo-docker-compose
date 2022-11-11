@@ -34,21 +34,19 @@ class DBResponse(NamedTuple):
     error: int
 
 
-class DatabaseHandler(yaml.Dumper):
+class MyDumper(yaml.Dumper):
+    def increase_indent(self, flow=False, indentless=False):
+        return super(MyDumper, self).increase_indent(flow, False)
 
+class DatabaseHandler:
 
     def __init__(self, db_path: Path) -> None:
         self._db_path = db_path
-
-    def increase_indent(self, flow=False, indentless=False):
-        return super(DatabaseHandler, self).increase_indent(flow, False)
     
     def write_compose(self, config_list: List[Dict[str, Any]]) -> DBResponse:
         try:
-            #TODO
             with open("docker-compose.yml", mode="wt", encoding="utf-8") as file:
-                print(config_list)
-                yaml.dump(config_list, file, Dumper=DatabaseHandler, default_flow_style=False) 
+                yaml.dump(config_list, file, Dumper=MyDumper, default_flow_style=False) 
             return DBResponse(config_list, SUCCESS)
 
         except OSError: # Catch file IO problems
