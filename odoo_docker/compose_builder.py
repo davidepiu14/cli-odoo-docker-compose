@@ -1,14 +1,9 @@
-"""This module provides the ET expense model-controller."""
-
-import datetime
-
-
-from odoo_docker.database import DatabaseHandler
+"""This module provides the cli-odoo-docker-compose model-controller."""
+from odoo_docker.database import YmlHandler
 from odoo_docker import COMPOSE
 from pathlib import Path
 from typing import Any, Dict, List, NamedTuple
 
-import yaml
 
 
 
@@ -19,8 +14,8 @@ class CurrentOdooDockerImage(NamedTuple):
 
 class OdooDockerComposeBuilder:
 
-    def __init__(self, db_path: Path) -> None:
-        self._db_handler = DatabaseHandler(db_path)
+    def __init__(self, yml_path: Path) -> None:
+        self._db_handler = YmlHandler(yml_path)
    
     def create_docker_compose(self, version):
         
