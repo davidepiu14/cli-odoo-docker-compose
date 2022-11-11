@@ -38,7 +38,7 @@ Commands:
   init    Initialize docker-compose.yml file
   ```
   
-  ## Examples
+  ## Example
   
   - ```python3 -m odoo_docker init```
   - ```python3 -m odoo_docker create -v 12.0```
