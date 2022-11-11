@@ -5,7 +5,7 @@ import yaml
 from pathlib import Path
 from typing import Any, Dict, List, NamedTuple
 
-from docker import (
+from odoo_docker import (
     DB_WRITE_ERROR, 
     DB_WRITE_ERROR, 
     SUCCESS, 

@@ -6,7 +6,7 @@ import pytest
 _logger = logging.getLogger(__name__)
 
 
-from docker import (
+from odoo_docker import (
     DB_READ_ERROR,
     SUCCESS,
     __app_name__,

@@ -6,7 +6,7 @@ from pathlib import Path
 
 import typer
 
-from docker import (
+from odoo_docker import (
         DB_WRITE_ERROR, DIR_ERROR, FILE_ERROR, SUCCESS, __app_name__
 )
 

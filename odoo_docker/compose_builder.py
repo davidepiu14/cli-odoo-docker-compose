@@ -3,8 +3,8 @@
 import datetime
 
 
-from docker.database import DatabaseHandler
-from docker import COMPOSE
+from odoo_docker.database import DatabaseHandler
+from odoo_docker import COMPOSE
 from pathlib import Path
 from typing import Any, Dict, List, NamedTuple
 

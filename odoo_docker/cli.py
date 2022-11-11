@@ -6,12 +6,13 @@ from pathlib import Path
 from typing import List, Optional
 
 
-from docker import (
+from odoo_docker import (
         ERRORS, 
         __app_name__, 
         __version__, 
         config, 
-        database
+        database,
+        compose_builder
 )
 
 app = typer.Typer()
@@ -23,10 +24,10 @@ def init(
             str(database.DEFAULT_DB_FILE_PATH),
             "--db-path",
             "-db",
-            prompt="expense database location",
+            prompt="docker-compose.yml location",
         ),
 ) -> None:
-    """Initialize the expense database."""
+    """Initialize docker-compose.yml file"""
     app_init_error = config.init_app(db_path)
     if app_init_error:
         typer.secho(
@@ -66,16 +67,25 @@ def main(
 ) -> None:
     return
 
-
-
-
+def get_docker_compose() -> compose_builder.OdooDockerComposeBuilder:
+    if config.CONFIG_FILE_PATH.exists():
+        db_path = database.get_database_path(config.CONFIG_FILE_PATH)
+    else:
+        typer.secho(
+                'Config file not found. Please, run "docker init"',
+                fg=typer.colors.RED,
+        )
+        raise typer.Exit(1)
+    if db_path.exists():
+        return compose_builder.OdooDockerComposeBuilder(db_path)
 
 @app.command()
 def create(
       	version: float = typer.Option(14.0, "--version", "-v"),
     ) -> None:
     """Create docker-compose.yml file with specified version"""
-    docker_compose = create_docker_compose(version)
+    docker = get_docker_compose()
+    docker_compose, error = docker.create_docker_compose(version)
     if error:
         typer.secho(
                 'Docker-compose creation failed with %s' % (ERRORS[error]),
