@@ -3,7 +3,7 @@
 import datetime
 
 
-from database import DatabaseHandler
+from docker.database import DatabaseHandler
 from docker import COMPOSE
 from pathlib import Path
 from typing import Any, Dict, List, NamedTuple

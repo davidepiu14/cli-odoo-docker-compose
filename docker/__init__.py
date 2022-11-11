@@ -1,5 +1,4 @@
 """Top-level package for odoo docker-container creation"""
-# expense/__init__.py
 
 __app_name__ = "cli-odoo-docker-container"
 __version__ = "0.1.0"
