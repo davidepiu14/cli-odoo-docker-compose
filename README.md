@@ -6,7 +6,7 @@ Set-up your locally enviroment to work with Odoo and docker, no more copy and pa
 
 ## Roadmap
 
-- [ ] Set-up repository if needed
+- [x] Set-up repository if needed
 
 - [x] Select Odoo version
 
