@@ -97,3 +97,18 @@ def create(
             fg=typer.colors.GREEN,
         )
 
+@app.command('git-init')
+def git_init() -> None:
+    """Initialize git repository"""
+    compose_builder = get_docker_compose_builder()
+    repo = compose_builder.set_up_repository()
+
+    typer.secho(
+            f"""[ODOO-DOCKER-COMPOSE] "Created git repository: {repo}""",
+            fg=typer.colors.GREEN,
+        )
+    
+
+
+
+
